@@ -31,7 +31,7 @@ Jira:  https://thiagombelo.atlassian.net/jira/software/projects/FDS/boards/1
 
 Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?node-id=0-1&t=wjQNRIhkDzDIrVIn-0
 
-
+# #
 
 # Para instalar o projeto na sua maquina #
  
