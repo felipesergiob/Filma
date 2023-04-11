@@ -37,7 +37,7 @@ Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?no
  
  ## Crie uma pastar do projeto com o nome do projeto ##
   ## Na pasta de um clone dos arquivos ##
-     git clone https://github.com/renagol/Filma.git
+     git clone https://github.com/felipesergiob/Filma.git
      
  ## Quando clonado os arquivos set os ambientes da venv ## 
     python -m virtualenv .venv
