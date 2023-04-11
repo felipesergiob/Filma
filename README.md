@@ -30,3 +30,18 @@ Thiago Belo
 Jira:  https://thiagombelo.atlassian.net/jira/software/projects/FDS/boards/1
 
 Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?node-id=0-1&t=wjQNRIhkDzDIrVIn-0
+
+# Para instalar o projeto na sua maquina #
+ 
+ ## Crie uma pastar do projeto com o nome do projeto ##
+  ## Na pasta de um clone dos arquivos ##
+     git clone https://github.com/renagol/Filma.git
+     
+ ## Quando clonado os arquivos set os ambientes da venv ## 
+    python -m virtualenv .venv
+  
+ ## Depois entre na sua venv ## 
+    .venv\Scripts\activate
+  
+  ## No ultimo passo baixe os arquivos requirements ##
+    pip install -r requirements.txt
