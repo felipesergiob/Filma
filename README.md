@@ -33,7 +33,7 @@ Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?no
 
 # #
 
-# Para instalar o projeto na sua maquina #
+# Para instalar o projeto na sua maquina 
  
  ## Crie uma pastar do projeto com o nome do projeto ##
   ## Na pasta de um clone dos arquivos ##
