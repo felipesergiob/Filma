@@ -14,7 +14,7 @@ Jira;
 Figma;
 
 # TIME 
-Aécio Laurentino 
+Renato Santana
 
 Brunna Pontual
 
