@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse('<h1>Feliz 7 meses bb</h1>')
+    return render(request, 'galeria/index.html')
+
+def imagem(request):
+    return render(request, 'galeria/imagem.html')
