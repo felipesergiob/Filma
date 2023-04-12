@@ -33,7 +33,7 @@ body {
     line-height: 1;
     font-family: 'Space Grotesk', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(#041833,#04244F,#154580);
+    background: linear-gradient(#041833,#041833,#041833);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -79,6 +79,13 @@ table {
     display: flex;
     justify-content: space-between;
     margin: 1.5rem 0 4rem 0;
+    background-color: #04244F;
+    width: 100%;
+    padding: 1.5rem 3rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    color: #FFFFFF;
 }
 
 .cabecalho__busca {
@@ -90,6 +97,7 @@ table {
     justify-content: space-between;
     padding: 2px;
     width: auto; 
+    margin-left: 1.5rem;
 }
 
 .busca__fundo {
@@ -111,6 +119,10 @@ table {
     width: 500px;
 }
 
+.busca__input:focus {
+    color: white;
+}
+
 .busca__icone {
     cursor: pointer;
     width: 2rem;
@@ -122,10 +134,12 @@ table {
 }
 
 .cards__titulo {
-    color: #7B78E5;
+    color: white;
     font-size: 2rem;
     line-height: 3rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
 }
 
 .cards__lista{
@@ -142,6 +156,7 @@ table {
     margin-bottom: 1.5rem;
     position: relative;
     width: 450px;
+    background-color: #04244F;
 }
 
 .card__imagem {
@@ -150,7 +165,7 @@ table {
 }
 
 .card__tag {
-    background-color: #D9D9D940;
+    background-color: #d9d9d9b6;
     border-radius: 8px;
     border: 2px solid transparent;
     font-size: 1.2rem;
@@ -166,6 +181,7 @@ table {
 .card__info {
     font-size: 1.2rem;
     padding: 0 1.5rem 1rem 1.5rem;
+    background-color: #04244F;
 }
 
 .card__titulo {
@@ -244,39 +260,10 @@ table {
     font-size: 0.7rem;
 }
 
-.menu-lateral {
-    padding-right: 1.5rem;
-    box-sizing: border-box;
-    min-width: 270px;
-}
-
-.menu-lateral__navegacao {
-    display: flex;
-    flex-direction: column;
-}
-
-.menu-lateral__navegacao a {
-    font-family: 'Space Grotesk', sans-serif;
-    align-items: center;
-    display: flex;
-    margin-bottom: 1.5rem;
-    text-decoration: none;
-    color: #D9D9D9;
-    font-size: 24px;
-}
-
-.menu-lateral__navegacao a:first-child {
-    font-weight: bold;
-    color: #7B78E5;
-}
-
-.menu-lateral__navegacao img {
-    margin-right: 1.5rem;
-}
-
 .pagina-inicial {
     max-width: 1440px;
-    padding: 1.5rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
     margin: 0 auto;
 }
 
@@ -332,26 +319,6 @@ table {
     justify-content: space-between;
 }
 
-.rodape {
-    background-color: #04244F;
-    width: 100%;
-    padding: 1.5rem 3rem;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    color: #FFFFFF;
-}
-
-.rodape__icones {
-    width: 80px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.rodape__texto {
-    font-size: 1.1rem;
-}
-
 .tags {
     padding: 1.5rem 0;
     display: flex;
@@ -370,7 +337,7 @@ table {
 
 .tags__tag {
     background-color: #D9D9D930;
-    margin-right: 1.5rem;
+    margin-left: 1.5rem;
     border-radius: 8px;
     padding: .8rem .5rem;
     width: 100px;
