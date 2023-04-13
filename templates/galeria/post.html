@@ -1,5 +1,16 @@
 {% extends 'galeria/base.html' %}
 {% load static %}
 {% block content %}
-
+        <section class="contanier">
+        <form>
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class ="form-group">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            <input type="submit" value="OK" clas="btn btn-sucess">
+        </form>
+    </section>
 {% endblock %}
