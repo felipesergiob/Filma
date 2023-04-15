@@ -6,11 +6,13 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from galeria.forms import Perfilform,GaleriaForms
 from django.contrib.auth.forms import UserCreationForm
+from galeria.models import Filme
 
 
 #@login_required(login_url='login')
 def index(request):
-    return render(request, 'galeria/index.html')
+    filmes = Filme.objects.all()
+    return render(request, 'galeria/index.html', {"cards": filmes})
 
 def imagem(request):
     return render(request, 'galeria/imagem.html')
