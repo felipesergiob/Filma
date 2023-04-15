@@ -4,28 +4,34 @@
     <div class="main-login">
         <div class="left-login">
             <h1>Faça login<br>para avaliar seus filmes favoritos</h1>
-            <img src="animated.svg" class= "left-login-image" alt="animated">
-            
+            <img src="{% static '/assets/imagens/galeria/animated.svg' %}" class= "left-login-image" alt="animated">
         </div>
-
         <div class="right-login">
 
         <div class="card-login"> 
             <h1>LOGIN</h1>
-            <div class="text-field">
-                <label for="usuario">Usuário</label>
-                <input type="text" name="usuario" placeholder="Usuário">
-
-                <div class="text-field">
-                    <label for="senha">Senha</label>
-                    <input type="password" name="senha" placeholder="Senha">
-
-                    <button class="btn-login">login</button>
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="principal">
+                    <label>Usuário:</label>
+                    <br>
+                    <input type="text" name="username"><i class="fa-solid fa-user"></i>
+                    <br>
+                    <label>Password:</label>
+                    <br>
+                    <input type="password" name="password"><i class="fa-solid fa-lock"></i>
+                    <br>
+                    <br>
+                    <button type="submit" class="button">Entrar</button>
+                    <br>
+                    <a href="{% url 'cadastro' %}">Cadastrar</a>
+                    {% for message in messages %}
+                    <div align="center">
+                    <strong>Erro! </strong>{{ message }}
+                    </div>
+                    {% endfor %}
             </div>
-        </div>
-        
+        </form>
         </div>
     </div>
-
 {% endblock %}
->>>>>>> 0b0ee53e6682deb9e939a1957446a3d1f444975f
