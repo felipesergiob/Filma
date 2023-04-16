@@ -10,8 +10,16 @@ class Perfil(models.Model):
     
 #Adicionando filmes ao banco de dados
 class Filme(models.Model):
+
+    OPCOES_STATUS = [
+        ("WATCHLIST", "Watchlist"),
+        ("ASSISTIDO", "Assistido"),
+        ("FAVORITO", "Favorito"),
+    ]
+
     titulo = models.CharField(max_length=100, null=False, blank=False)
     genero = models.CharField(max_length=100, null=False, blank=False)
+    status = models.CharField(max_length=100, choices=OPCOES_STATUS)
     elenco = models.CharField(max_length=100)
     sinopse = models.TextField(max_length=1000)
     capa = models.CharField(max_length=100, null=False, blank=False)
