@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as login_django
 from django.contrib.auth.models import User
@@ -14,8 +14,9 @@ def index(request):
     filmes = Filme.objects.all()
     return render(request, 'galeria/index.html', {"cards": filmes})
 
-def imagem(request):
-    return render(request, 'galeria/imagem.html')
+def imagem(request, movie_id):
+    filme = get_object_or_404(Filme, pk=movie_id)
+    return render(request, 'galeria/imagem.html', {"filme": filme})
 
 def login(request):
     return render(request, 'galeria/login.html')
