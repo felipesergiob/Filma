@@ -15,7 +15,7 @@
                 {% for filme in cards %}
                 <li class="card">
                     <a href="{% url 'imagem' filme.id %}">
-                        <img class="card__imagem" src="{% static '/assets/imagens/capas_filmes/'%}{{ filme.capa }}" alt="foto">
+                        <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
                     </a>
                     <span class="card__tag">5.0 ⭐</span>
                     <div class="card__info">
@@ -43,7 +43,7 @@
                 {% for filme in cards %}
                 <li class="card">
                     <a href="{% url 'imagem' filme.id %}">
-                        <img class="card__imagem" src="{% static '/assets/imagens/capas_filmes/'%}{{ filme.capa }}" alt="foto">
+                        <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
                     </a>
                     <span class="card__tag">5.0 ⭐</span>
                     <div class="card__info">

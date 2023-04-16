@@ -11,7 +11,7 @@ from galeria.models import Filme
 
 #@login_required(login_url='login')
 def index(request):
-    filmes = Filme.objects.all()
+    filmes = Filme.objects.order_by('-ano_de_producao').all()
     return render(request, 'galeria/index.html', {"cards": filmes})
 
 def imagem(request, movie_id):

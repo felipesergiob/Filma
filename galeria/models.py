@@ -19,10 +19,10 @@ class Filme(models.Model):
 
     titulo = models.CharField(max_length=100, null=False, blank=False)
     genero = models.CharField(max_length=100, null=False, blank=False)
-    status = models.CharField(max_length=100, choices=OPCOES_STATUS)
+    status = models.CharField(max_length=100, choices=OPCOES_STATUS, blank=True)
     elenco = models.CharField(max_length=100)
     sinopse = models.TextField(max_length=1000)
-    capa = models.CharField(max_length=100, null=False, blank=False)
+    capa = models.ImageField(upload_to="capas_movie", blank=False)
     ano_de_producao = models.DateField()
     views_count = models.IntegerField(default=0)
 

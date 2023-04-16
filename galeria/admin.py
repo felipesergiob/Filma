@@ -9,5 +9,10 @@ admin.site.register(Perfil, Perfils)
 class ListandoFilme(admin.ModelAdmin):
     list_display = ('id', 'titulo', 'genero', 'views_count')
     list_display_links = ('id', 'titulo')
-    search_fields = ('titulo', 'genero',)
+    search_fields = ('titulo', 'genero', 'status',)
+    list_filter = ('status', 'views_count',)
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_select_related = ("status",)
+
 admin.site.register(Filme, ListandoFilme)
