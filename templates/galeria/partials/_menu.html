@@ -9,14 +9,14 @@
             </div>
         </div>
         <section class="tags">
-            <ul class="tags__lista">
-                <li class="tags__tag">Home</li>
-                <li class="tags__tag">Lista</li>
+            <nav class="tags__lista">
+                <a class="tags__tag" href="{% url 'index' %}">Home</a>
+                <a class="tags__tag" href="{% url 'lista' %}">Lista</a>
                 {% comment %} <li class="tags__tag">Amigos</li> {% endcomment %}
-                <li class="tags__tag">Perfil</li>
-            </ul>
+                <a class="tags__tag" href="{% url 'perfil' %}">Perfil</a>
+            </nav>
         </section>
     </header>
-    <main class="principal">
+    <main class="principal"> 
        
         

@@ -49,3 +49,11 @@ def post(request):
     form = GaleriaForms()
     contexto = {'form':form}
     return render(request, 'galeria/post.html', contexto)
+
+
+def lista(request):
+    return render(request, 'galeria/lista.html')
+
+
+def perfil(request):
+    return render(request, 'galeria/perfil.html')
