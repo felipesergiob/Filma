@@ -12,5 +12,10 @@
             {% endfor %}
             <input type="submit" value="OK" clas="btn btn-sucess">
         </form>
+        <form action="submit" method="POST">
+            {% csrf_token %}
+            <br>
+            <button type="submit" name="filme_id" value="{{ filme.id }}" class="btn btn_primary btn-sm">Favorite</button>
+        </form>
     </section>
 {% endblock %}

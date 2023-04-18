@@ -25,6 +25,10 @@ class Filme(models.Model):
     capa = models.ImageField(upload_to="capas_movie", blank=False)
     ano_de_producao = models.DateField()
     views_count = models.IntegerField(default=0)
+    favourites = models.ManyToManyField(User, related_name='favourite', blank=True)
 
     def __str__(self):
         return self.titulo
+    
+    def total_favs(self):
+        return self.favourites.count()

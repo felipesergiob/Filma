@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login as login_django
+from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
-from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
 from galeria.forms import Perfilform,GaleriaForms
-from django.contrib.auth.forms import UserCreationForm
 from galeria.models import Filme
-
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 #@login_required(login_url='login')
 def index(request):
@@ -28,11 +27,12 @@ def submit_login(request):
 
         usuario = authenticate(username=username, password=password)
 
-        if usuario:
-            return redirect('index')
+        if usuario is not None:
+            login_user(request, usuario)
+            return redirect('/')
         else:
             messages.error(request, "Usuário ou senha inválido")
-            return redirect('login')
+        return redirect('login')
 
 def cadastro(request):
     form = Perfilform(request.POST)
@@ -54,6 +54,14 @@ def post(request):
 def lista(request):
     return render(request, 'galeria/lista.html')
 
-
+login_required(login_url='login')
 def perfil(request):
     return render(request, 'galeria/perfil.html')
+
+def darlike(request, pk):
+    filme = get_object_or_404(Filme, id=pk)
+    if request.user in Filme.favourites.all():
+        Filme.favourites.remove(request.user)
+    else:
+        Filme.favourites.add(request.user)
+    return redirect('index'+str(filme.id))

@@ -1,5 +1,17 @@
 {% extends 'galeria/base.html' %}
 {% load static %}
 {% block content %}
-<h1>Lista</h1>
+
+{% for filmes in favourite_filmes %}
+    <li>
+        {{ filme.titulo }} 
+        <a href="//{{filme.id}}/{{filme.genero}}">
+            <i class="fa-solid fa-eye"></i>
+        </a>
+    </li>
+    
+    {% endfor %}
+        </ul>
+    </div>
+</section>
 {% endblock %}
