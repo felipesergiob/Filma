@@ -31,6 +31,10 @@ Jira:  https://thiagombelo.atlassian.net/jira/software/projects/FDS/boards/1
 
 Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?node-id=0-1&t=wjQNRIhkDzDIrVIn-0
 
+# Relato do pair programming
+
+Para implemetação das 3 historias utilizamos o pair progamming, as tarefas foram divididas em duplas, e além disso, caso alguma das duplas precisasse de ajuda, integrantes que inicialmente foram designados para outras tarefas, poderiam ajudar. As dupla compostas foram: Marcelo Cavalcanti e Pedro Coutinho, Thiago Belo e Brunna Pontual, Felipe Sérgio e Renato Santana. Levando em conta isso, a divisão de tarefas teve como objetivo englobar as 3 funcionalidades, e tarefas como as páginas em HTML/CSS, autenticação de usuário, e também o login/cadastro.
+
 # #
 
 # Para instalar o projeto na sua maquina 
