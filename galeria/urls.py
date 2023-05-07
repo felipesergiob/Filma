@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import RedirectView
-from galeria.views import index, imagem, login, cadastro, post, submit_login, perfil, lista, darlike
+from galeria.views import index, imagem, login, cadastro, post, submit_login, perfil, lista, darlike, buscar
 
 urlpatterns = [
     path('', index, name='index'),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('perfil/', perfil, name='perfil'),
     path('lista/', lista, name='lista'),
     path('post/like/<int:pk>/', darlike, name='darlike'),
+    path("buscar", buscar, name="buscar"),
 ]

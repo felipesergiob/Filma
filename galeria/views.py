@@ -10,12 +10,22 @@ from django.urls import reverse
 
 #@login_required(login_url='login')
 def index(request):
-    filmes = Filme.objects.order_by('-ano_de_producao').all()
+    filmes = Filme.objects.order_by("-views_count").all()
     return render(request, 'galeria/index.html', {"cards": filmes})
 
 def imagem(request, movie_id):
     filme = get_object_or_404(Filme, pk=movie_id)
     return render(request, 'galeria/imagem.html', {"filme": filme})
+
+def buscar(request):
+    filmes = Filme.objects.order_by("-views_count").all()
+
+    if "buscar" in request.GET:
+        titulo_a_buscar = request.GET['buscar']
+        if titulo_a_buscar:
+            filmes = filmes.filter(titulo__icontains=titulo_a_buscar)
+
+    return render(request, "galeria/buscar.html", {"cards": filmes})
 
 def login(request):
     return render(request, 'galeria/login.html')

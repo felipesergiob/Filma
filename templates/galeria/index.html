@@ -1,5 +1,5 @@
 {% extends 'galeria/base.html' %}
-{% load <static> %}
+{% load static %}
 {% block content %} 
 <section class="conteudo">
     {% comment %} <section class="banner">
@@ -9,7 +9,7 @@
     
     <section class="galeria">
         <div class="cards">
-            <h2 class="cards__titulo">============================= NOVOS FILMES =============================</h2>
+            <h2 class="cards__titulo">                 POPULARES NO MOMENTO               </h2>
             <ul class="cards__lista">
                 {% if cards %}
                 {% for filme in cards %}
@@ -35,35 +35,6 @@
             </ul>
         </div>
     </section>
-    <section class="galeria">
-        <div class="cards">
-            <h2 class="cards__titulo">====================== FILMES MAIS BEM AVALIADOS ======================</h2>
-            <ul class="cards__lista">
-                {% if cards %}
-                {% for filme in cards %}
-                <li class="card">
-                    <a href="{% url 'imagem' filme.id %}">
-                        <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
-                    </a>
-                    <span class="card__tag">5.0 ⭐</span>
-                    <div class="card__info">
-                        <p class="card__titulo">{{ filme.titulo }}</p>
-                        <div class="card__texto">
-                            <p class="card__descricao">{{ filme.genero }}</p>
-                            <span>
-                                <img src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
-                            </span>
-                        </div>
-                    </div>
-                </li>
-                </li>
-                {% endfor %}
-                {% else %}
-                {% endif %}
-                </li>
-            </ul>
-        </div>
-    </section>  
 </section>
 </main>
 </div>
