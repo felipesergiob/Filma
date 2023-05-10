@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import Sum
+from django.db.models import Avg
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Perfil(models.Model):
     nome = models.CharField(max_length=70, null=True)
@@ -8,8 +10,8 @@ class Perfil(models.Model):
 
     def __str__(self):
         return self.nome
-    
-#Adicionando filmes ao banco de dados
+
+
 class Filme(models.Model):
 
     OPCOES_STATUS = [
@@ -28,7 +30,7 @@ class Filme(models.Model):
     views_count = models.IntegerField(default=0)
     favourites = models.ManyToManyField(User, related_name='favourites', blank=True)
     watchlists = models.ManyToManyField(User, related_name='watchlists', blank=True)
-    estrelas = models.IntegerField(default=0, blank=True)
+    estrelas = models.FloatField(default=0, blank=True)
 
     def __str__(self):
         return self.titulo
@@ -39,8 +41,16 @@ class Filme(models.Model):
     def total_wl(self):
         return self.watchlists.count()
 
-    def total_estrelas(self):
-        return self.estrelas
+    def calcular_media_estrelas(self):
+        total_avaliacoes = self.avaliacoes.count()
+        if total_avaliacoes > 0:
+            media_estrelas = self.avaliacoes.aggregate(media=Avg('estrelas'))['media']
+            return media_estrelas
+        return 0.0
+
+class Avaliacao(models.Model):
+    filme = models.ForeignKey(Filme, related_name='avaliacoes', on_delete=models.CASCADE)
+    estrelas = models.IntegerField()
     
 class Comment(models.Model):
     filme = models.ForeignKey(Filme, related_name='comments', on_delete=models.CASCADE)
@@ -52,5 +62,5 @@ class Comment(models.Model):
         return self.name
     
     def total_comments(self):
-        return self.name.count()
+        return self.filme.comments.count()
     

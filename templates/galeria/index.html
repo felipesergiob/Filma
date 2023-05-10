@@ -17,9 +17,13 @@
                     <div class="card__texto">
                         <p class="card__descricao">{{ filme.genero }}</p>
                         <span>
-                            <form action="{% url 'favViews' filme.id %}" method="POST">
+                            <form action="{% url 'favViews' pk=filme.id %}" method="POST">
                                 {% csrf_token %}
-                                <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
+                                {% if request.user in filme.favourites.all %}
+                                    <input type="image" src="{% static '/assets/ícones/1x/favorite_outline - ativado.png' %}" alt="ícone de coração - ativado">
+                                {% else %}
+                                    <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração - desativado">
+                                {% endif %}
                             </form>
                         </span>
                     </div>

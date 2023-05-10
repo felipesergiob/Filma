@@ -438,21 +438,25 @@ table {
     cursor: pointer;
 }
 .comentarios{
-    text-decoration-color: white;
-    font-size: medium
+    margin-top: 20px;
+    text-align: center;
 }
-.add_comentario{
-    color: white
-}
-.form-group{
-    color: white;
 
+.buttons-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 .add_comentario{
     flex-direction: row;
     align-items: center;
     justify-items: center;
-    color: white;
+    color: rgb(156, 156, 247);
+}
+
+.add_comentario:hover {
+    border: 2px solid #ffffff;
+    cursor: pointer;
 }
 
 .add_comentario > button{
@@ -467,7 +471,36 @@ table {
 .titulo_comentario{
     flex-direction: row;
     align-items: center;
-    font-size: medium;
-    font: bold;
+    font-size: xx-large;
     color: white;
+}
+.card__imagem__comentario{
+    width: 250px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.buttons-section button {
+    margin-left: 10px;
+}
+
+.fav-section {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.watchlist-section {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fav-button,
+.watchlist-button {
+    background: none;
+    border: none;
+    padding: 0;
+}
+.fav-button img,
+.watchlist-button img {
+    width: 24px;
+    height: 24px;
 }

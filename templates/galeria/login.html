@@ -2,17 +2,12 @@
 {% load static %}
 {% block content %} 
     <div class="main-login">
-        <div class="left-login">
-            <h1>Faça login<br>para avaliar seus filmes favoritos</h1>
-            <img src="{% static '/assets/imagens/galeria/animated.svg' %}" class= "left-login-image" alt="animated">
-        </div>
         <div class="right-login">
-
         <div class="card-login"> 
             <h1>LOGIN</h1>
             <form action="submit" method="POST">
                 {% csrf_token %}
-                <div class="principal">
+                <div class="form-group">
                     <label>Usuário:</label>
                     <br>
                     <input type="text" name="username"><i class="fa-solid fa-user"></i>

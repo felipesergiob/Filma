@@ -4,15 +4,27 @@ from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
 from django.contrib import messages
 from galeria.forms import Perfilform, CommentForm, AvaliacaoForm
-from galeria.models import Filme, Comment
+from galeria.models import Filme, Comment, Avaliacao
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
+from django.db.models import Avg
 
 #@login_required(login_url='login')
 def index(request):
     filmes = Filme.objects.order_by("-views_count").all()
-    return render(request, 'galeria/index.html', {"cards": filmes})
+    tem_fav = False
+    tem_wl = False
+
+    context = {
+        'cards': filmes,
+        'favs': 0,
+        'wls': 0,
+        'tem_fav': tem_fav,
+        'tem_wl': tem_wl,
+    }
+
+    return render(request, 'galeria/index.html', context)
 
 def imagem(request, movie_id):
 
@@ -91,14 +103,20 @@ def watchlist(request, pk):
         filme.watchlists.add(request.user)
     return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))
 
+
 def avaliar_filme(request, filme_id):
     filme = get_object_or_404(Filme, pk=filme_id)
+    
     if request.method == 'POST':
         estrelas = int(request.POST.get('estrelas'))
-        filme.estrelas = estrelas 
+        avaliacao = Avaliacao(filme=filme, estrelas=estrelas)
+        avaliacao.save()
+        
+        media_estrelas = filme.avaliacoes.aggregate(media=Avg('estrelas'))['media']
+        filme.estrelas = media_estrelas or 0  # Defina como 0 se a média for None
         filme.save()
+        
         return HttpResponseRedirect(reverse('imagem', args=[str(filme_id)]))
-
 class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm

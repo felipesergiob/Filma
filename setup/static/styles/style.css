@@ -438,10 +438,15 @@ table {
     cursor: pointer;
 }
 .comentarios{
-    text-decoration-color: white;
-    font-size: medium
+    margin-top: 20px;
+    text-align: center;
 }
 
+.buttons-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 .add_comentario{
     flex-direction: row;
     align-items: center;
@@ -473,3 +478,22 @@ table {
     width: 250px;
     border-radius: 5px 5px 5px 5px;
 }
+.buttons-section {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  .fav-section {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 2;
+  }
+  
+
+
+  
+  
