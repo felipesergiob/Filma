@@ -44,9 +44,14 @@
                     {% csrf_token %}
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">
                     {% if tem_fav %}
-                        <button class="ui button negative" type="submit">Desfavoritar</button>
+                    <div class="button">
+                        <button class="btn btn-secondary" type="submit">Desfavoritar
+                            <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
+                        </button>
                     {% else %}
-                        <button class="ui button positive" type="submit">Favoritar</button>
+                        <button class="btn btn-secondary" type="submit">Favoritar
+                            <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
+                        </button>
                     {% endif %}
                 </form>
             </div>
@@ -55,9 +60,9 @@
                     {% csrf_token %}
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">
                     {% if tem_wl %}
-                        <button type="submit">Remover da sua watchlist</button>
+                        <button type="submit" class="btn btn-secondary">Remover da sua watchlist</button>
                     {% else %}
-                        <button type="submit">Adicionar para a sua watchlist</button>
+                        <button type="submit" class="btn btn-secondary">Adicionar para a sua watchlist</button>
                     {% endif %}
                 </form>
             </div>

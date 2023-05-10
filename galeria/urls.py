@@ -4,7 +4,7 @@ from galeria.views import index, imagem, login, cadastro, submit_login, perfil, 
 
 urlpatterns = [
     path('', index, name='index'),
-    path('imagem/<int:movie_id>', imagem, name='imagem'),
+    path('filme/<int:movie_id>', imagem, name='imagem'),
     path('login/',  login, name='login'),
     path('cadastro/', cadastro, name='cadastro'),
     path('login/submit', submit_login),
