@@ -36,3 +36,12 @@ class Filme(models.Model):
     
     def total_wl(self):
         return self.watchlists.count()
+
+class Comment(models.Model):
+    filme = models.ForeignKey(Filme, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=False, blank=False)
+    body = models.TextField(null=True)
+    date_added = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name

@@ -12,6 +12,29 @@
                                 <p class="imagem__texto">{{ filme.sinopse }}</p>
                             </div>
                         </div>
+                        <div class="comentarios">
+                            <br/><br/>
+                            <hr>
+                            <h1>Comentarios...</h1>
+                            <br/>
+                            {% if not filme.comments.all %}
+                                Sem comentarios ainda <a href="{% url 'add_comentario' filme.id %}">Adicione um</a>
+                                <br/><br/>
+                            {% else %}
+                            <br/>
+                            <a href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
+                            <br/><br/>
+                                {% for comment in filme.comments.all %}
+                                    <strong>{{ comment.name }} - 
+                                    {{ comment.date_added }}
+                                    </strong>
+                                    <br/>
+                                    {{comment.body}}
+                                    <br/><br/>
+                                    <hr>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                     </div>
                 </section>
             </section>

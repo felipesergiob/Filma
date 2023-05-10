@@ -4,9 +4,10 @@ from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
 from django.contrib import messages
 from galeria.forms import Perfilform,GaleriaForms
-from galeria.models import Filme
+from galeria.models import Filme, Comment
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
+from django.views.generic.edit import CreateView
 
 #@login_required(login_url='login')
 def index(request):
@@ -89,3 +90,8 @@ def watchlist(request, pk):
     else:
         filme.watchlists.add(request.user)
     return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))
+
+class AddCommentView(CreateView):
+    model = Comment
+    template_name = 'add_comentario.html'
+    fields = '__all__'

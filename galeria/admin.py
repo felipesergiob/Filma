@@ -1,7 +1,7 @@
 from django.contrib import admin
 from galeria.models import Perfil
 from galeria.models import Filme
-
+from galeria.models import Comment
 
 class Perfils(admin.ModelAdmin):
     list_display = ('id', 'nome')
@@ -17,3 +17,4 @@ class ArticleAdmin(admin.ModelAdmin):
     list_select_related = ("status",)
 
 admin.site.register(Filme, ListandoFilme)
+admin.site.register(Comment)
