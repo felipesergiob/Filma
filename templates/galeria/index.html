@@ -11,7 +11,7 @@
                 <a href="{% url 'imagem' filme.id %}">
                     <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
                 </a>
-                <span class="card__tag">5.0 ⭐</span>
+                <span class="card__tag">{{ filme.estrelas }} ⭐</span>
                 <div class="card__info">
                     <p class="card__titulo">{{ filme.titulo }}</p>
                     <div class="card__texto">

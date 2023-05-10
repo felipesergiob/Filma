@@ -2,16 +2,26 @@
 {% load static %}
 
 {% block content %}
-    <div class="add_comentario">
+    <div class="container">
         <h1>Adicione um comentário...</h1>
         <div class="form-group">
             <form method="POST" action="{% url 'add_comentario' pk=filme.id %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-secondary">Adicione um comentário</button>
+                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Envie seu comentario">Adicione um comentário</button>
             </form>
-        </div>
+        </div> 
     </div>
+    <div class="imagem__conteudo">
+        <a href="{% url 'imagem' filme.id %}">
+            <img class="card__imagem__comentario" src="{{ filme.capa.url }}" alt="foto">
+        </a>
+        <div class="imagem__info">
+            <div class="imagem__texto">
+                <p class="imagem__titulo">{{ filme.titulo }} | {{ filme.ano_de_producao}}</p>
+            </div>
+        </div>  
+    </div>     
     
     <script>
         var name = "{{ user.id }}"

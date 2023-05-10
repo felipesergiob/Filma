@@ -85,6 +85,7 @@ time,
 mark,
 audio,
 video {
+    color: white;
     margin: 0;
     padding: 0;
     border: 0;
@@ -444,5 +445,29 @@ table {
     color: white
 }
 .form-group{
+    color: white;
+
+}
+.add_comentario{
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    color: white;
+}
+
+.add_comentario > button{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+.comentario_individual{
+    color: white;
+}
+.titulo_comentario{
+    flex-direction: row;
+    align-items: center;
+    font-size: medium;
+    font: bold;
     color: white;
 }

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login as login_user
 from django.contrib.auth.models import User
 from django.contrib import messages
-from galeria.forms import Perfilform,GaleriaForms
+from galeria.forms import Perfilform, CommentForm, AvaliacaoForm
 from galeria.models import Filme, Comment
 from django.http import HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -91,13 +91,19 @@ def watchlist(request, pk):
         filme.watchlists.add(request.user)
     return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))
 
-from django.views.generic.edit import CreateView
-from galeria.models import Comment
+def avaliar_filme(request, filme_id):
+    filme = get_object_or_404(Filme, pk=filme_id)
+    if request.method == 'POST':
+        estrelas = int(request.POST.get('estrelas'))
+        filme.estrelas = estrelas 
+        filme.save()
+        return HttpResponseRedirect(reverse('imagem', args=[str(filme_id)]))
 
 class AddCommentView(CreateView):
     model = Comment
+    form_class = CommentForm
     template_name = 'galeria/add_comentario.html'
-    fields = '__all__'
+    #fields = '__all__'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -110,3 +116,4 @@ class AddCommentView(CreateView):
     
     def get_success_url(self):
         return reverse('imagem', kwargs={'movie_id': self.kwargs['pk']})
+   

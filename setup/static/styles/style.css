@@ -85,6 +85,7 @@ time,
 mark,
 audio,
 video {
+    color: white;
     margin: 0;
     padding: 0;
     border: 0;
@@ -440,18 +441,17 @@ table {
     text-decoration-color: white;
     font-size: medium
 }
-.add_comentario{
-    color: white
-}
-.form-group{
-    color: white;
 
-}
 .add_comentario{
     flex-direction: row;
     align-items: center;
     justify-items: center;
-    color: white;
+    color: rgb(156, 156, 247);
+}
+
+.add_comentario:hover {
+    border: 2px solid #ffffff;
+    cursor: pointer;
 }
 
 .add_comentario > button{
@@ -459,4 +459,17 @@ table {
     justify-content: center;
     align-items: center;
     
+}
+.comentario_individual{
+    color: white;
+}
+.titulo_comentario{
+    flex-direction: row;
+    align-items: center;
+    font-size: xx-large;
+    color: white;
+}
+.card__imagem__comentario{
+    width: 250px;
+    border-radius: 5px 5px 5px 5px;
 }

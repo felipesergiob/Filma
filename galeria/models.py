@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Sum
 
 class Perfil(models.Model):
     nome = models.CharField(max_length=70, null=True)
@@ -27,6 +28,7 @@ class Filme(models.Model):
     views_count = models.IntegerField(default=0)
     favourites = models.ManyToManyField(User, related_name='favourites', blank=True)
     watchlists = models.ManyToManyField(User, related_name='watchlists', blank=True)
+    estrelas = models.IntegerField(default=0, blank=True)
 
     def __str__(self):
         return self.titulo
@@ -37,6 +39,9 @@ class Filme(models.Model):
     def total_wl(self):
         return self.watchlists.count()
 
+    def total_estrelas(self):
+        return self.estrelas
+    
 class Comment(models.Model):
     filme = models.ForeignKey(Filme, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -45,3 +50,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def total_comments(self):
+        return self.name.count()
+    

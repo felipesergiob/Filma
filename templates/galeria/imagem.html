@@ -15,24 +15,27 @@
                         <div class="comentarios">
                             <br/><br/>
                             <hr>
-                            <h1>Comentarios...</h1>
+                            <h1 class="titulo_comentario">Comentarios...</h1>
                             <br/>
                             {% if not filme.comments.all %}
-                                Sem comentarios ainda <a href="{% url 'add_comentario' filme.id %}">Adicione um</a>
+                                Sem comentarios ainda <a  class="btn btn-link" href="{% url 'add_comentario' filme.id %}">Adicione um</a>
                                 <br/><br/>
                             {% else %}
                             <br/>
-                            <a class="add_comentario" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
+                            <a  class="btn btn-link" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
                             <br/><br/>
                                 {% for comment in filme.comments.all %}
-                                    <strong class="comentario_individual">{{ comment.name }} - 
+                                    <hr>
+                                    <strong class="btn btn-secondary">{{ comment.name }} - 
                                     {{ comment.date_added }}
                                     </strong>
                                     <br/>
+                                    <p class="btn btn-secondary">
                                     {{comment.body}}
-                                    <br/><br/>
-                                    <hr>
+                                    </p>
+                                    <br/><br/>   
                                 {% endfor %}
+                                <hr>
                             {% endif %}
                         </div>
                     </div>
@@ -66,6 +69,17 @@
                     {% endif %}
                 </form>
             </div>
+            <form method="POST" action="{% url 'avaliar_filme' filme_id=filme.id %}">
+                {% csrf_token %}
+                <select name="estrelas">
+                    <option value="1">1 estrela</option>
+                    <option value="2">2 estrelas</option>
+                    <option value="3">3 estrelas</option>
+                    <option value="4">4 estrelas</option>
+                    <option value="5">5 estrelas</option>
+                </select>
+                <button type="submit" class="btn btn-secondary">Avaliar</button>
+            </form>
         </main>
     </div>
 {% endblock %}
