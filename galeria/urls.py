@@ -13,5 +13,5 @@ urlpatterns = [
     path("buscar", buscar, name="buscar"),
     path('fav/<int:pk>/', favViews, name='favViews'),
     path('watchlist/<int:pk>/', watchlist, name='watchlist'),
-    path('imagem/<int:pk>/add_comentario/', AddCommentView.as_view(), name='add_comentario'),
+    path('filme/<int:pk>/add_comentario/', AddCommentView.as_view(), name='add_comentario'),
 ]

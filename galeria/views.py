@@ -91,7 +91,22 @@ def watchlist(request, pk):
         filme.watchlists.add(request.user)
     return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))
 
+from django.views.generic.edit import CreateView
+from galeria.models import Comment
+
 class AddCommentView(CreateView):
     model = Comment
-    template_name = 'add_comentario.html'
+    template_name = 'galeria/add_comentario.html'
     fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filme'] = get_object_or_404(Filme, pk=self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form):
+        form.instance.filme = get_object_or_404(Filme, pk=self.kwargs['pk'])
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('imagem', kwargs={'movie_id': self.kwargs['pk']})
