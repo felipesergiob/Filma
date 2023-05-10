@@ -6,7 +6,7 @@ from django.contrib import messages
 from galeria.forms import Perfilform,GaleriaForms
 from galeria.models import Filme
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 #@login_required(login_url='login')
 def index(request):
@@ -14,8 +14,19 @@ def index(request):
     return render(request, 'galeria/index.html', {"cards": filmes})
 
 def imagem(request, movie_id):
+
     filme = get_object_or_404(Filme, pk=movie_id)
-    return render(request, 'galeria/imagem.html', {"filme": filme})
+    tem_fav = request.user in filme.favourites.all()
+    tem_wl = request.user in filme.watchlists.all()
+
+    context = {
+        'filme': filme,
+        'favs': filme.total_favs(),
+        'wls': filme.total_wl(),
+        'tem_fav': tem_fav,
+        'tem_wl': tem_wl,
+        }
+    return render(request, 'galeria/imagem.html', context)
 
 def buscar(request):
     filmes = Filme.objects.order_by("-views_count").all()
@@ -55,12 +66,6 @@ def cadastro(request):
             return redirect('login')
     return render(request, 'galeria/cadastro.html', {'form':form})  
 
-def post(request):
-    form = GaleriaForms()
-    contexto = {'form':form}
-    return render(request, 'galeria/post.html', contexto)
-
-
 def lista(request):
     return render(request, 'galeria/lista.html')
 
@@ -68,10 +73,19 @@ login_required(login_url='login')
 def perfil(request):
     return render(request, 'galeria/perfil.html')
 
-def darlike(request, pk):
+def favViews(request, pk):
+    url = request.META.get('HTTP_REFERER')
     filme = get_object_or_404(Filme, id=pk)
-    if request.user in Filme.favourites.all():
-        Filme.favourites.remove(request.user)
+    if request.user in filme.favourites.all():
+        filme.favourites.remove(request.user)
     else:
-        Filme.favourites.add(request.user)
-    return redirect('index'+str(filme.id))
+        filme.favourites.add(request.user)
+    return HttpResponseRedirect(url)
+
+def watchlist(request, pk):
+    filme = get_object_or_404(Filme, id=pk)
+    if request.user in filme.watchlists.all():
+        filme.watchlists.remove(request.user)
+    else:
+        filme.watchlists.add(request.user)
+    return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))

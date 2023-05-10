@@ -15,6 +15,29 @@
                     </div>
                 </section>
             </section>
+            <br/><br/>
+            <div id="fav-section">
+                <form action="{% url 'favViews' filme.id %}" method="POST" class="ui form">
+                    {% csrf_token %}
+                    <input type="hidden" name="filme_id" value="{{ filme.id }}">
+                    {% if tem_fav %}
+                        <button class="ui button negative" type="submit">Desfavoritar</button>
+                    {% else %}
+                        <button class="ui button positive" type="submit">Favoritar</button>
+                    {% endif %}
+                </form>
+            </div>
+            <div id="watchlist-section">
+                <form action="{% url 'watchlist' filme.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="filme_id" value="{{ filme.id }}">
+                    {% if tem_wl %}
+                        <button type="submit">Remover da sua watchlist</button>
+                    {% else %}
+                        <button type="submit">Adicionar para a sua watchlist</button>
+                    {% endif %}
+                </form>
+            </div>
         </main>
     </div>
 {% endblock %}
