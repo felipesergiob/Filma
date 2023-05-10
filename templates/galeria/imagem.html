@@ -22,10 +22,10 @@
                                 <br/><br/>
                             {% else %}
                             <br/>
-                            <a href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
+                            <a class="add_comentario" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
                             <br/><br/>
                                 {% for comment in filme.comments.all %}
-                                    <strong>{{ comment.name }} - 
+                                    <strong class="comentario_individual">{{ comment.name }} - 
                                     {{ comment.date_added }}
                                     </strong>
                                     <br/>
@@ -39,7 +39,7 @@
                 </section>
             </section>
             <br/><br/>
-            <div id="fav-section">
+            <div id="fav-section" class="favoritos">
                 <form action="{% url 'favViews' filme.id %}" method="POST" class="ui form">
                     {% csrf_token %}
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">
@@ -55,7 +55,7 @@
                     {% endif %}
                 </form>
             </div>
-            <div id="watchlist-section">
+            <div id="watchlist-section" class="watchlist">
                 <form action="{% url 'watchlist' filme.id %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">

@@ -436,3 +436,27 @@ table {
     border: 2px solid #7B78E5;
     cursor: pointer;
 }
+.comentarios{
+    text-decoration-color: white;
+    font-size: medium
+}
+.add_comentario{
+    color: white
+}
+.form-group{
+    color: white;
+
+}
+.add_comentario{
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    color: white;
+}
+
+.add_comentario > button{
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}

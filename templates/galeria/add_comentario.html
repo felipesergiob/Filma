@@ -2,17 +2,17 @@
 {% load static %}
 
 {% block content %}
-    <h1>Adicione um comentário...</h1>
-    <br/><br/>
-
-    <div class="form-group">
-        <form method="POST" action="{% url 'add_comentario' pk=filme.id %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-secondary">Adicione um comentário</button>
-        </form>
+    <div class="add_comentario">
+        <h1>Adicione um comentário...</h1>
+        <div class="form-group">
+            <form method="POST" action="{% url 'add_comentario' pk=filme.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-secondary">Adicione um comentário</button>
+            </form>
+        </div>
     </div>
-
+    
     <script>
         var name = "{{ user.id }}"
         document.getElementById("elder").value = name;
