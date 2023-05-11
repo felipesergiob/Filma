@@ -1,17 +1,66 @@
 {% extends 'galeria/base.html' %}
 {% load static %}
-{% block content %}
 
-{% for filmes in favourite_filmes %}
-    <li>
-        {{ filme.titulo }} 
-        <a href="//{{filme.id}}/{{filme.genero}}">
-            <i class="fa-solid fa-eye"></i>
-        </a>
-    </li>
-    
-    {% endfor %}
-        </ul>
+{% block content %}
+    <h1>Filmes Favoritos:</h1>
+    <div class="card-container">
+        {% for filme in favourite_filmes %}
+        <li class="card card-small">
+            <a href="{% url 'imagem' filme.id %}">
+                <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
+            </a>
+            <span class="card__tag">{{ filme.estrelas|floatformat:0 }} ⭐</span>
+            <div class="card__info">
+                <p class="card__titulo">{{ filme.titulo }}</p>
+                <div class="card__texto">
+                    <p class="card__descricao">{{ filme.genero }}</p>
+                    <span>
+                        <form action="{% url 'favViews' pk=filme.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if request.user in filme.favourites.all %}
+                                <input type="image" src="{% static '/assets/ícones/1x/favorite_outline - ativado.png' %}" alt="ícone de coração - ativado">
+                            {% else %}
+                                <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração - desativado">
+                            {% endif %}
+                        </form>
+                    </span>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+            <p>Nenhum filme favorito encontrado.</p>
+        {% endfor %}
     </div>
-</section>
+
+    <h1>Filmes na Watchlist:</h1>
+    <div class="card-container">
+        {% for filme in watchlist_filmes %}
+        <li class="card card-small">
+            <a href="{% url 'imagem' filme.id %}">
+                <img class="card__imagem" src="{{ filme.capa.url }}" alt="foto">
+            </a>
+            <span class="card__tag">{{ filme.estrelas|floatformat:0 }} ⭐</span>
+            <div class="card__info">
+                <p class="card__titulo">{{ filme.titulo }}</p>
+                <div class="card__texto">
+                    <p class="card__descricao">{{ filme.genero }}</p>
+                    <span>
+                        <form action="{% url 'favViews' pk=filme.id %}" method="POST">
+                            {% csrf_token %}
+                            {% if request.user in filme.favourites.all %}
+                                <input type="image" src="{% static '/assets/ícones/1x/favorite_outline - ativado.png' %}" alt="ícone de coração - ativado">
+                            {% else %}
+                                <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração - desativado">
+                            {% endif %}
+                        </form>
+                    </span>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+            <p>Nenhum filme na watchlist encontrado
+            </p>
+            {% endfor %}
+        </div>
 {% endblock %}
+    

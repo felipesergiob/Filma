@@ -1,11 +1,12 @@
 from django.urls import path
 from django.views.generic import RedirectView
-from galeria.views import index, imagem, login, cadastro, submit_login, perfil, lista, buscar, favViews, watchlist, AddCommentView, avaliar_filme
+from galeria.views import index, imagem, login, cadastro, submit_login, perfil, lista, buscar, favViews, watchlist, AddCommentView, avaliar_filme, logout_user
 
 urlpatterns = [
     path('', index, name='index'),
     path('filme/<int:movie_id>', imagem, name='imagem'),
     path('login/',  login, name='login'),
+    path('logout/', logout_user, name='logout' ),
     path('cadastro/', cadastro, name='cadastro'),
     path('login/submit', submit_login),
     path('perfil/', perfil, name='perfil'),

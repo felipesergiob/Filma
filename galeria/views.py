@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login as login_user
+from django.contrib.auth import authenticate, login as login_user, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from galeria.forms import Perfilform, CommentForm, AvaliacaoForm
 from galeria.models import Filme, Comment, Avaliacao
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect 
 from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
 from django.db.models import Avg
+from django.utils.decorators import method_decorator
 
 #@login_required(login_url='login')
 def index(request):
@@ -54,6 +55,10 @@ def buscar(request):
 def login(request):
     return render(request, 'galeria/login.html')
 
+def logout_user(request):
+    logout(request)
+    return redirect('/')
+
 def submit_login(request):
     if request.POST:
         username = request.POST.get('username')
@@ -79,13 +84,24 @@ def cadastro(request):
             return redirect('login')
     return render(request, 'galeria/cadastro.html', {'form':form})  
 
+@login_required(login_url='login')
 def lista(request):
-    return render(request, 'galeria/lista.html')
+    favourite_filmes = Filme.objects.filter(favourites=request.user)
+    watchlist_filmes = Filme.objects.filter(watchlists=request.user)
 
-login_required(login_url='login')
+    context = {
+        'favourite_filmes': favourite_filmes,
+        'watchlist_filmes': watchlist_filmes
+    }
+    
+    return render(request, 'galeria/lista.html', context)
+
+
+@login_required(login_url='login')
 def perfil(request):
     return render(request, 'galeria/perfil.html')
 
+@login_required(login_url='login')
 def favViews(request, pk):
     url = request.META.get('HTTP_REFERER')
     filme = get_object_or_404(Filme, id=pk)
@@ -95,6 +111,7 @@ def favViews(request, pk):
         filme.favourites.add(request.user)
     return HttpResponseRedirect(url)
 
+@login_required(login_url='login')
 def watchlist(request, pk):
     filme = get_object_or_404(Filme, id=pk)
     if request.user in filme.watchlists.all():
@@ -103,7 +120,7 @@ def watchlist(request, pk):
         filme.watchlists.add(request.user)
     return HttpResponseRedirect(reverse('imagem', args=[str(pk)]))
 
-
+@login_required(login_url='login')
 def avaliar_filme(request, filme_id):
     filme = get_object_or_404(Filme, pk=filme_id)
     
@@ -117,12 +134,17 @@ def avaliar_filme(request, filme_id):
         filme.save()
         
         return HttpResponseRedirect(reverse('imagem', args=[str(filme_id)]))
+     
 class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'galeria/add_comentario.html'
     #fields = '__all__'
 
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filme'] = get_object_or_404(Filme, pk=self.kwargs['pk'])
