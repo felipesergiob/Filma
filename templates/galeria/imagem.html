@@ -68,18 +68,41 @@
                         <button type="submit" class="btn btn-secondary">Adicionar para a sua watchlist</button>
                     {% endif %}
                 </form>
-            </div>
-            <form method="POST" action="{% url 'avaliar_filme' filme_id=filme.id %}">
-                {% csrf_token %}
-                <select name="estrelas">
-                    <option value="1">1 estrela</option>
-                    <option value="2">2 estrelas</option>
-                    <option value="3">3 estrelas</option>
-                    <option value="4">4 estrelas</option>
-                    <option value="5">5 estrelas</option>
-                </select>
-                <button type="submit" class="btn btn-secondary">Avaliar</button>
-            </form>
-        </main>
-    </div>
+                <div class="rating-stars">
+                    <div class="rating-stars">
+                        <form action="{% url 'avaliar_filme' filme.id %}" method="POST">
+                            {% csrf_token %}
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="1">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="2">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="3">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="4">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="5">
+                            
+                            <input type="hidden" id="rating-value" name="rating" value="">
+                            
+                            <button type="submit" id="enviar-avaliacao" data-csrf-token="{% csrf_token %}">Enviar Avaliação</button>
+                        </form>
+                    </div>
+                    
+                    <script>
+                        const stars = document.querySelectorAll('.star');
+                        const ratingValue = document.getElementById('rating-value');
+                    
+                        stars.forEach(star => {
+                            star.addEventListener('click', () => {
+                                const rating = star.getAttribute('data-rating');
+                                ratingValue.value = rating;
+                    
+                                stars.forEach(s => {
+                                    const sRating = s.getAttribute('data-rating');
+                                    if (sRating <= rating) {
+                                        s.src = "{% static '/assets/ícones/1x/star-filled.png' %}";
+                                    } else {
+                                        s.src = "{% static '/assets/ícones/1x/star-outline.png' %}";
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                        
 {% endblock %}

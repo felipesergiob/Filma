@@ -125,15 +125,17 @@ def avaliar_filme(request, filme_id):
     filme = get_object_or_404(Filme, pk=filme_id)
     
     if request.method == 'POST':
-        estrelas = int(request.POST.get('estrelas'))
-        avaliacao = Avaliacao(filme=filme, estrelas=estrelas)
+        rating = int(request.POST.get('rating'))
+        avaliacao = Avaliacao(filme=filme, estrelas=rating)
         avaliacao.save()
         
         media_estrelas = filme.avaliacoes.aggregate(media=Avg('estrelas'))['media']
-        filme.estrelas = media_estrelas or 0  # Defina como 0 se a média for None
+        filme.estrelas = media_estrelas or 0 
         filme.save()
         
         return HttpResponseRedirect(reverse('imagem', args=[str(filme_id)]))
+
+
      
 class AddCommentView(CreateView):
     model = Comment

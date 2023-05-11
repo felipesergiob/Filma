@@ -48,6 +48,10 @@ class Filme(models.Model):
             return media_estrelas
         return 0.0
 
+    def save(self, *args, **kwargs):
+        self.estrelas = self.calcular_media_estrelas()
+        super().save(*args, **kwargs)
+
 class Avaliacao(models.Model):
     filme = models.ForeignKey(Filme, related_name='avaliacoes', on_delete=models.CASCADE)
     estrelas = models.IntegerField()

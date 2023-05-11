@@ -207,6 +207,7 @@ table {
     width: 500px;
 }
 
+
 .busca__input:focus {
     color: white;
 }
@@ -422,7 +423,12 @@ table {
 .tags__lista {
     display: flex;
 }
-
+.formulario_buscar{
+    background-color: red;
+}
+.botao-lupa{
+    background-color: #007bff;
+}
 .tags__tag {
     background-color: #D9D9D930;
     margin-left: 1.5rem;
