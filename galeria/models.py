@@ -13,7 +13,6 @@ class Perfil(models.Model):
 
 
 class Filme(models.Model):
-
     OPCOES_STATUS = [
         ("WATCHLIST", "Watchlist"),
         ("ASSISTIDO", "Assistido"),
@@ -49,13 +48,18 @@ class Filme(models.Model):
         return 0.0
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Salvar o objeto Filme no banco de dados
         self.estrelas = self.calcular_media_estrelas()
-        super().save(*args, **kwargs)
+        super().save(update_fields=['estrelas'])  # Atualizar apenas o campo 'estrelas' no banco de dados
 
 class Avaliacao(models.Model):
-    filme = models.ForeignKey(Filme, related_name='avaliacoes', on_delete=models.CASCADE)
+    filme = models.ForeignKey('Filme', related_name='avaliacoes', on_delete=models.CASCADE)
     estrelas = models.IntegerField()
-    
+
+@receiver(post_save, sender=Avaliacao)
+def atualizar_media_estrelas(sender, instance, **kwargs):
+    instance.filme.save()  # Chamar o método save() do objeto Filme após salvar uma Avaliacao
+
 class Comment(models.Model):
     filme = models.ForeignKey(Filme, related_name='comments', on_delete=models.CASCADE)
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -67,4 +71,3 @@ class Comment(models.Model):
     
     def total_comments(self):
         return self.filme.comments.count()
-    
