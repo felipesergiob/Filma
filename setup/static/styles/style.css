@@ -214,8 +214,8 @@ table {
 
 .busca__icone {
     cursor: pointer;
-    width: 2rem;
-    height: 2rem;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .cards {
@@ -413,7 +413,7 @@ table {
     display: flex;
     align-items: center;
     color: #D9D9D9;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
 }
 
 .tags__titulo {
@@ -424,14 +424,14 @@ table {
     display: flex;
 }
 .formulario_buscar{
-    background-color: red;
+    background-color: transparent;
 }
 .botao-lupa{
-    background-color: #007bff;
+    background-color: transparent;
 }
 .tags__tag {
     background-color: #D9D9D930;
-    margin-left: 1.5rem;
+    margin-left: 1.3rem;
     border-radius: 8px;
     padding: .8rem .5rem;
     width: 100px;
