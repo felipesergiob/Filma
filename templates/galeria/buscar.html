@@ -25,9 +25,9 @@
                                 <form action="{% url 'favViews' pk=filme.id %}" method="POST">
                                     {% csrf_token %}
                                     {% if request.user in filme.favourites.all %}
-                                        <input type="image" src="{% static '/assets/ícones/1x/favorite_outline - ativado.png' %}" alt="ícone de coração - ativado">
+                                        <input type="image" id="fav_filled" src="{% static '/assets/ícones/1x/favorite_outline - ativado.png' %}" alt="ícone de coração - ativado">
                                     {% else %}
-                                        <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração - desativado">
+                                        <input type="image" id="fav_unfilled" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração - desativado">
                                     {% endif %}
                                 </form>
                             </span>

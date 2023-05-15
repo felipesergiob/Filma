@@ -18,11 +18,11 @@
                             <h1 class="titulo_comentario">Comentarios...</h1>
                             <br/>
                             {% if not filme.comments.all %}
-                                Sem comentarios ainda <a  class="btn btn-link" href="{% url 'add_comentario' filme.id %}">Adicione um</a>
+                                Sem comentarios ainda <a  class="btn btn-link" id="primeiro_comentar" href="{% url 'add_comentario' filme.id %}">Adicione um</a>
                                 <br/><br/>
                             {% else %}
                             <br/>
-                            <a  class="btn btn-link" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
+                            <a  class="btn btn-link" id="comentar" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
                             <br/><br/>
                                 {% for comment in filme.comments.all %}
                                     <hr>
@@ -48,11 +48,11 @@
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">
                     {% if tem_fav %}
                     <div class="button">
-                        <button class="btn btn-secondary" type="submit">Desfavoritar
+                        <button class="btn btn-secondary" name="unfav_img" type="submit">Desfavoritar
                             <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
                         </button>
                     {% else %}
-                        <button class="btn btn-secondary" type="submit">Favoritar
+                        <button class="btn btn-secondary" name="fav_img" type="submit">Favoritar
                             <input type="image" src="{% static '/assets/ícones/1x/favorite_outline.png' %}" alt="ícone de coração">
                         </button>
                     {% endif %}
@@ -63,24 +63,24 @@
                     {% csrf_token %}
                     <input type="hidden" name="filme_id" value="{{ filme.id }}">
                     {% if tem_wl %}
-                        <button type="submit" class="btn btn-secondary">Remover da sua watchlist</button>
+                        <button type="submit" class="btn btn-secondary" name="un_wl" >Remover da sua watchlist</button>
                     {% else %}
-                        <button type="submit" class="btn btn-secondary">Adicionar para a sua watchlist</button>
+                        <button type="submit" class="btn btn-secondary" name="wl">Adicionar para a sua watchlist</button>
                     {% endif %}
                 </form>
                 <div class="rating-stars">
                     <div class="rating-stars">
                         <form action="{% url 'avaliar_filme' filme.id %}" method="POST">
                             {% csrf_token %}
-                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="1">
-                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="2">
-                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="3">
-                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="4">
-                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" data-rating="5">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" id="star1" data-rating="1">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" id="star2" data-rating="2">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" id="star3" data-rating="3">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" id="star4" data-rating="4">
+                            <img src="{% static '/assets/ícones/1x/star-outline.png' %}" alt="Estrela" class="star" id="star5" data-rating="5">
                             
                             <input type="hidden" id="rating-value" name="rating" value="">
                             
-                            <button type="submit" id="enviar-avaliacao" data-csrf-token="{% csrf_token %}">Enviar Avaliação</button>
+                            <button type="submit" class="teste_brunna" id="enviar-avaliacao" data-csrf-token="{% csrf_token %}">Enviar Avaliação</button>
                         </form>
                     </div>
                     

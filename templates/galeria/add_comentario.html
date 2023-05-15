@@ -8,7 +8,7 @@
             <form method="POST" action="{% url 'add_comentario' pk=filme.id %}">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Envie seu comentario">Adicione um comentário</button>
+                <button type="submit" class="btn btn-primary" id="btn_comentario" data-toggle="tooltip" data-placement="top" title="Envie seu comentario">Adicione um comentário</button>
             </form>
         </div> 
     </div>

@@ -5,7 +5,7 @@
     <form action="{% url 'cadastro' %}"method="POST">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Confirmar">
+        <input id="Sign Up" type="submit" value="Confirmar">
         <br>
         <a href="{% url 'login' %}">Logue aqui</a>
         </a>
