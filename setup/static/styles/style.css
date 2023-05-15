@@ -425,6 +425,14 @@ table {
 }
 .formulario_buscar{
     background-color: transparent;
+    display: flex;
+    width: 400px;
+    height: 40px;
+}
+.busca__input{
+    display: flex;
+    width: 400px;
+    height: 40px;
 }
 .botao-lupa{
     background-color: transparent;
