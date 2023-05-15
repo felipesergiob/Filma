@@ -29,7 +29,7 @@ Thiago Belo
 # LINKS
 Jira:  https://thiagombelo.atlassian.net/jira/software/projects/FDS/boards/1
 
-Figma: https://www.figma.com/file/0JW06MYPB8d7kTghMkn05I/Prot%C3%B3tipo-Lo-fi?node-id=0-1&t=wjQNRIhkDzDIrVIn-0
+WireFrame: https://xd.adobe.com/view/6c92dd5d-0776-4773-a34f-5f8d05f74669-39c1/?fullscreen&hints=off
 
 # Relato do pair programming
 
