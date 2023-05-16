@@ -34,7 +34,7 @@ class filma(TestCase):
         time.sleep(2)
 
         username_register = driver.find_element(By.NAME,"username")
-        username_register.send_keys("mago")
+        username_register.send_keys("teste")
 
         email_register = driver.find_element(By.NAME,"email")
         email_register.send_keys("mago@gmail.com")
@@ -257,7 +257,7 @@ class filma(TestCase):
 
     def run_tests(self, driver):
         self.tela_login(driver)
-        #self.register(driver)
+        self.register(driver)
         self.login(driver)
         self.busca_filme_existente(driver)
         self.busca_filme_inexistente(driver)
