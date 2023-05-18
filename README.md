@@ -35,6 +35,9 @@ WireFrame: https://xd.adobe.com/view/6c92dd5d-0776-4773-a34f-5f8d05f74669-39c1/?
 
 Para implemetação das 3 historias utilizamos o pair progamming, as tarefas foram divididas em duplas, e além disso, caso alguma das duplas precisasse de ajuda, integrantes que inicialmente foram designados para outras tarefas, poderiam ajudar. As dupla compostas foram: Marcelo Cavalcanti e Pedro Coutinho, Thiago Belo e Brunna Pontual, Felipe Sérgio e Renato Santana. Levando em conta isso, a divisão de tarefas teve como objetivo englobar as 3 funcionalidades, e tarefas como as páginas em HTML/CSS, autenticação de usuário, e também o login/cadastro.
 
+# Segundo relato do pair programming
+
+Na terceiro entrega, trabalhamos em pares para realizar as atividades. Cada par foi responsável por uma história específica, enquanto o grupo trabalhou em conjunto usando TDD e AWS para desenvolvimento. Todos os membros assumiram a responsabilidade pela orientação de páginas e URLs no framework Django. Os pares foram compostos por Marcelo Cavalcanti e Pedro Coutinho, Thiago Belo e Brunna Pontual, Felipe Sérgio e Renato Santana. Dessa forma, o grupo entregou seis funcionalidades adicionais com páginas HTML e CSS, funcionalidades de login e autenticação de usuário, TDD e AWS.
 # #
 
 # Para instalar o projeto na sua maquina 
