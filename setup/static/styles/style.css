@@ -85,7 +85,7 @@ time,
 mark,
 audio,
 video {
-    color: whitesmoke;
+    color: white;
     margin: 0;
     padding: 0;
     border: 0;
@@ -592,7 +592,6 @@ table {
   }
   
   label {
-    color: #000000;
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
