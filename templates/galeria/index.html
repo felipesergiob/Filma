@@ -3,7 +3,15 @@
 {% block content %}     
 <section class="galeria">
     <div class="cards">
-        <h2 class="cards__titulo">                 POPULARES NO MOMENTO               </h2>
+        <section class="tags">
+            <p class="tags__titulo">Filtrar por:</p>
+            <ul class="tags__lista">
+                <li class="tags__tag">Ano de Produção</li>
+                <li class="tags__tag">Melhores Avaliados</li>
+                <li class="tags__tag">Mais Assistidos</li>
+            </ul>
+        </section>
+        <h2 class="cards__titulo">                 FILMES POPULARES              </h2>
         <ul class="cards__lista">
             {% if cards %}
             {% for filme in cards %}
