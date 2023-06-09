@@ -170,6 +170,7 @@ table {
     background-color: #04244F;
     width: 100%;
     padding: 1.5rem 3rem;
+    border-radius: 8px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;

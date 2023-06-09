@@ -42,6 +42,11 @@ def imagem(request, movie_id):
         }
     return render(request, 'galeria/imagem.html', context)
 
+def views(request):
+    filmes = Filme.objects.order_by("-views_count").all()
+
+    return render(request, "galeria/views.html", {"cards": filmes})
+
 def buscar(request):
     filmes = Filme.objects.order_by("-views_count").all()
 
