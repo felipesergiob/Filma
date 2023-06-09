@@ -13,7 +13,7 @@ from django.utils.decorators import method_decorator
 
 #@login_required(login_url='login')
 def index(request):
-    filmes = Filme.objects.order_by("-views_count").all()
+    filmes = Filme.objects.all()
     tem_fav = False
     tem_wl = False
 
@@ -42,10 +42,21 @@ def imagem(request, movie_id):
         }
     return render(request, 'galeria/imagem.html', context)
 
-def views(request):
+def top_views(request):
     filmes = Filme.objects.order_by("-views_count").all()
 
-    return render(request, "galeria/views.html", {"cards": filmes})
+    return render(request, "galeria/top_views.html", {"cards": filmes})
+
+def lancamento(request):
+    filmes = Filme.objects.order_by("-ano_de_producao").all()
+
+    return render(request, "galeria/lancamento.html", {"cards": filmes})
+
+def top_estrelas(request):
+    filmes = Filme.objects.order_by("-estrelas").all()
+
+    return render(request, "galeria/top_estrelas.html", {"cards": filmes})
+
 
 def buscar(request):
     filmes = Filme.objects.order_by("-views_count").all()

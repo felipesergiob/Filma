@@ -3,15 +3,7 @@
 {% block content %}     
 <section class="galeria">
     <div class="cards">
-        <section class="tags">
-            <p class="tags__titulo">Filtrar por:</p>
-            <ul class="tags__lista">
-                <a class="tags__tag" id="views_btn" href="{% url 'lancamento' %}">Ano de Produção</a>
-                <a class="tags__tag" id="views_btn" href="{% url 'top_estrelas' %}">Mais Avaliados</a>
-                <a class="tags__tag" id="views_btn" href="{% url 'top_views' %}">Mais Assistidos</a>
-            </ul>
-        </section>
-        <h2 class="cards__titulo">              </h2>
+        <h2 class="cards__titulo">                 NOVOS FILMES              </h2>
         <ul class="cards__lista">
             {% if cards %}
             {% for filme in cards %}
@@ -24,6 +16,7 @@
                     <p class="card__titulo">{{ filme.titulo }}</p>
                     <div class="card__texto">
                         <p class="card__descricao">{{ filme.genero }}</p>
+                        <p class="card__anoproducao">{{ filme.ano_de_producao }}</p> 
                         <span>
                             <form action="{% url 'favViews' pk=filme.id %}" method="POST">
                                 {% csrf_token %}
