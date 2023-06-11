@@ -16,7 +16,7 @@
                     <p class="card__titulo">{{ filme.titulo }}</p>
                     <div class="card__texto">
                         <p class="card__descricao">{{ filme.genero }}</p>
-                        <p class="card__viewscount">Views: {{ filme.views_count }}</p> 
+                        <span class="badge badge-light">Views: {{ filme.views_count }}</span>
                         <span>
                             <form action="{% url 'favViews' pk=filme.id %}" method="POST">
                                 {% csrf_token %}

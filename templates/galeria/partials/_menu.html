@@ -15,7 +15,7 @@
         </div>
         <section class="tags">
             <nav class="tags__lista">
-                <a class="tags__tag" id="home_btn" href="{% url 'index' %}"><img src="{% static '/assets/ícones/1x/Home - inativo.png' %}">Home</a>
+                <a class="tags__tag" id="home_btn" href="{% url 'index' %}">Home</a>
                 <a class="tags__tag" id="lista_btn" href="{% url 'lista' %}">Lista</a>
                 {% if user.is_authenticated %}
                     <a class="tags__tag" id="perfil_btn" href="{% url 'perfil' %}">Perfil</a>
