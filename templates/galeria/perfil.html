@@ -1,11 +1,15 @@
 {% extends 'galeria/base.html' %}
 {% load static %}
-
+{% block title %}Perfil{% endblock title %}
 {% block content %}
-    <h1>Perfil</h1>
+    <div class="row my-3 p-3">
 
     {% if user.is_authenticated %}
         <p>Bem-vindo, {{ user.username }}!</p>
+        <img class="card__perfil" src="{{ perfil.icone_perfil.url }}" alt="foto">
+        <div class="card__bioperfil">
+            <p class="card__bio">{{ perfil.bio }}</p>
+        </div>
         <a id="log-out" href="{% url 'logout' %}">Logout</a>
     {% else %}
         <p>Você não está logado.</p>

@@ -7,6 +7,8 @@ from django.dispatch import receiver
 class Perfil(models.Model):
     nome = models.CharField(max_length=70, null=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    icone_perfil = models.ImageField(default='default.jpg', upload_to='icone_perfil')
+    bio = models.TextField(blank=True)
 
     def __str__(self):
         return self.nome
