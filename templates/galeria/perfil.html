@@ -1,18 +1,44 @@
 {% extends 'galeria/base.html' %}
 {% load static %}
-{% block title %}Perfil{% endblock title %}
-{% block content %}
-    <div class="row my-3 p-3">
 
+{% block title %}Perfil{% endblock title %}
+
+{% block content %}
     {% if user.is_authenticated %}
-        <p>Bem-vindo, {{ user.username }}!</p>
-        <img class="card__perfil" src="{{ perfil.icone_perfil.url }}" alt="foto">
-        <div class="card__bioperfil">
-            <p class="card__bio">{{ perfil.bio }}</p>
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">MEU PERFIL</h1>
+
+            <div class="text-center">
+                {% if user.perfil.icone_perfil %}
+                    <img src="{{ user.perfil.icone_perfil.url }}" alt="Foto do Usuário" class="img-fluid rounded-circle">
+                {% else %}
+                    <img src="{% static 'icone_perfil/default.jpg' %}" alt="Foto Padrão" class="img-fluid rounded-circle">
+                {% endif %}
+                <div class="mt-3">
+                    <h4>@{{ user.username }}</h4>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.as_p }}
+                    </div>
+                    <button class="btn btn-primary" type="submit">Salvar</button>
+                </form>
+            </div>
+
+            <div class="text-center mt-4">
+                <a id="log-out" href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
+            </div>
         </div>
-        <a id="log-out" href="{% url 'logout' %}">Logout</a>
     {% else %}
-        <p>Você não está logado.</p>
-        <a href="{% url 'login' %}">Login</a>
+        <div class="col-md-6 offset-md-3">
+            <p class="text-center">Você não está logado.</p>
+            <div class="text-center">
+                <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}

@@ -10,6 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
 from django.db.models import Avg
 from django.utils.decorators import method_decorator
+from django.views.generic import DeleteView
 
 #@login_required(login_url='login')
 def index(request):
@@ -174,4 +175,12 @@ class AddCommentView(CreateView):
     
     def get_success_url(self):
         return reverse('imagem', kwargs={'movie_id': self.kwargs['pk']})
-   
+
+class DeleteCommentView(DeleteView):
+    model = Comment
+    template_name = 'galeria/apagar_comentario.html'
+    success_url = '/'
+
+    @method_decorator(login_required(login_url='login'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)

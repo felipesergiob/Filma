@@ -1,6 +1,7 @@
 from django.urls import path
 from django.views.generic import RedirectView
 from galeria.views import index, imagem, login, cadastro, submit_login, perfil, lista, buscar, favViews, watchlist, AddCommentView, avaliar_filme, logout_user, top_views, lancamento, top_estrelas
+from . import views
 
 urlpatterns = [
     path('', index, name='index'),
@@ -19,4 +20,5 @@ urlpatterns = [
     path('top_views/', top_views, name='top_views'),
     path('lancamento/', lancamento, name='lancamento'),
     path('top_estrelas/', top_estrelas, name='top_estrelas'),
+    path('comentario/<int:pk>/apagar/', views.DeleteCommentView.as_view(), name='apagar_comentario'),
 ]

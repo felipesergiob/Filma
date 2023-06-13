@@ -54,12 +54,39 @@ class filma(TestCase):
         escrever_username = wait.until(EC.presence_of_element_located((By.NAME, "username")))
         escrever_username.send_keys("teste")
 
-        password_login = driver.find_element(By.NAME, "password")
+        password_login = wait.until(EC.presence_of_element_located((By.NAME, "password")))
         password_login.send_keys("pcmagodefds")
 
-        botao_login = driver.find_element(By.CLASS_NAME, "button")
+        botao_login = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "button")))
         botao_login.click()
         #time.sleep(2)
+
+    def filtros(self, driver):
+        wait = WebDriverWait(driver, 10)
+
+        botao_filtro_1 = wait.until(EC.element_to_be_clickable((By.NAME, "top_views")))
+        botao_filtro_1.click()
+        time.sleep(2)
+
+        btn_home = wait.until(EC.element_to_be_clickable((By.ID, "home_btn")))
+        btn_home.click()
+        time.sleep(2)
+
+        botao_filtro_2 = wait.until(EC.element_to_be_clickable((By.NAME, "top_estrelas")))
+        botao_filtro_2.click()
+        time.sleep(2)
+
+        btn_home = wait.until(EC.element_to_be_clickable((By.ID, "home_btn")))
+        btn_home.click()
+        time.sleep(2)
+
+        botao_filtro_3 = wait.until(EC.element_to_be_clickable((By.NAME, "top_views")))
+        botao_filtro_3.click()
+        time.sleep(2)
+
+        btn_home = wait.until(EC.element_to_be_clickable((By.ID, "home_btn")))
+        btn_home.click()
+        time.sleep(2)
 
     def busca_filme_existente(self, driver):
         busca = driver.find_element(By.CLASS_NAME,"busca__input")
@@ -178,7 +205,7 @@ class filma(TestCase):
         time.sleep(2)
 
         nome_comment = driver.find_element(By.NAME, "name")
-        nome_comment.send_keys("mago")
+        nome_comment.send_keys("teste")
         #time.sleep(2)
 
         txt_comment = driver.find_element(By.NAME, "body")
@@ -187,6 +214,20 @@ class filma(TestCase):
 
         btn_comment = driver.find_element(By.ID, "btn_comentario")
         btn_comment.click()
+        time.sleep(2)
+    
+    def apagar_comentario(self, driver):
+        wait = WebDriverWait(driver, 10)
+        btn_apagar = wait.until(EC.visibility_of_element_located((By.NAME, "Apagar_coment")))
+
+        driver.execute_script("arguments[0].scrollIntoView();", btn_apagar)
+        time.sleep(1)
+
+        actions = ActionChains(driver)
+        actions.move_to_element(btn_apagar).perform()
+        time.sleep(1)
+
+        btn_apagar.click()
         time.sleep(2)
 
     def verificar_lista(self, driver):
@@ -259,12 +300,14 @@ class filma(TestCase):
         self.tela_login(driver)
         self.register(driver)
         self.login(driver)
+        self.filtros(driver)
         self.busca_filme_existente(driver)
         self.busca_filme_inexistente(driver)
         self.fav_home(driver)
         self.detalhes_filmes(driver)
         self.avaliar(driver)
         self.comentar(driver)
+        self.apagar_comentario(driver)
         self.verificar_lista(driver)
         self.adicionar_lista(driver)
         self.lista(driver)

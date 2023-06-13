@@ -6,9 +6,9 @@
         <section class="tags">
             <p class="tags__titulo">Filtrar por:</p>
             <ul class="tags__lista">
-                <a class="tags__tag" id="views_btn" href="{% url 'lancamento' %}">Ano de Produção</a>
-                <a class="tags__tag" id="views_btn" href="{% url 'top_estrelas' %}">Mais Bem Avaliados</a>
-                <a class="tags__tag" id="views_btn" href="{% url 'top_views' %}">Mais Assistidos</a>
+                <a class="tags__tag" id="views_btn" name="lancamento" href="{% url 'lancamento' %}">Ano de Produção</a>
+                <a class="tags__tag" id="views_btn" name="top_estrelas" href="{% url 'top_estrelas' %}">Mais Bem Avaliados</a>
+                <a class="tags__tag" id="views_btn" name="top_views" href="{% url 'top_views' %}">Mais Assistidos</a>
             </ul>
         </section>
         <h2 class="cards__titulo">              </h2>

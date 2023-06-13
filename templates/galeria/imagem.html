@@ -24,17 +24,22 @@
                             <br/>
                             <a  class="btn btn-link" id="comentar" href="{% url 'add_comentario' filme.id %}">Comente tambem</a>
                             <br/><br/>
-                                {% for comment in filme.comments.all %}
-                                    <hr>
-                                    <strong class="btn btn-secondary">{{ comment.name }} - 
-                                    {{ comment.date_added }}
-                                    </strong>
-                                    <br/>
-                                    <p class="btn btn-secondary">
-                                    {{comment.body}}
-                                    </p>
-                                    <br/><br/>   
-                                {% endfor %}
+                            {% for comment in filme.comments.all %}
+                                <hr>
+                                <strong class="btn btn-secondary">{{ comment.name }} - 
+                                {{ comment.date_added }}
+                                </strong>
+                                <br/>
+                                <p class="btn btn-secondary">
+                                {{comment.body}}
+                                {% if comment.name == user.username %}
+                                    <form method="post" action="{% url 'apagar_comentario' pk=comment.pk %}">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Excluir" name="Apagar_coment">
+                                    </form>
+                                {% endif %}
+                        {% endfor %}
+                        
                                 <hr>
                             {% endif %}
                         </div>
